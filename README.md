@@ -69,6 +69,9 @@ Only if `public_url` in `contact.json` changes:
 The script fails unless zbarimg decodes the PNG back to exactly the same URL.
 Properties: QR version 6, error correction H, plain square modules, 4-module
 quiet zone, navy on opaque white, integer module scaling.
+The SVG was verified by rendering it in Chrome and decoding with zbarimg. ImageMagick's
+built-in SVG renderer draws it incorrectly, so check SVG exports in a browser or
+your design tool, not ImageMagick.
 
 ## Deployment
 
@@ -77,7 +80,7 @@ push to `main` that touches `site/` runs `.github/workflows/pages.yml`, which
 uploads `site/` with `actions/upload-pages-artifact` and publishes it with
 `actions/deploy-pages`. All links in the page are relative, so it works under the
 `/soeren-leibach-contact/` project subpath. GitHub Pages serves `.vcf` as
-`text/vcard`, which lets iOS Safari show its contact import sheet.
+`text/x-vcard` (verified), which iOS Safari and Android recognise as a contact file.
 
 ## Testing
 
