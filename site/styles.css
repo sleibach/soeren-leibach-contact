@@ -84,8 +84,9 @@ body {
     max(1rem, env(safe-area-inset-left));
 }
 
-/* The deck's background, pinned to the screen rather than the document so the
-   mint glow always sits at the bottom edge and never ends in a hard line. */
+/* The deck's background, pinned to the screen. Both edges end in plain adesso
+   blue: Safari paints its status bar and bottom toolbar area in the root
+   background colour, so the mint glow fades out before the bottom edge. */
 body::before {
   content: "";
   position: fixed;
@@ -93,7 +94,8 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(90% 48% at 50% 100%, rgb(40 220 170 / 0.85) 0%, rgb(40 220 170 / 0.32) 45%, rgb(40 220 170 / 0) 80%),
+    linear-gradient(to bottom, rgb(0 110 199 / 0) 72%, rgb(0 110 199 / 1) 100%),
+    radial-gradient(85% 42% at 50% 92%, rgb(40 220 170 / 0.9) 0%, rgb(40 220 170 / 0.35) 45%, rgb(40 220 170 / 0) 80%),
     var(--blue);
 }
 
