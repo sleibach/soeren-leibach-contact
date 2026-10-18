@@ -57,7 +57,7 @@ brew install zbar            # independent QR decoder used for verification
 
 ## Updating details or the portrait
 
-1. Edit `contact.json` (name, title, email, phone, URL), and update the same text in
+1. Edit `contact.json` (name, title, email, phone, LinkedIn, GitHub), and update the same text in
    `site/index.html`.
 2. Rebuild the portrait and vCard from the **original** image (not a thumbnail):
    ```sh
@@ -125,7 +125,7 @@ Also: tap **Email me** (opens a mail draft) and **LinkedIn**.
 
 Everything in `site/` is public on the internet, and the repository is public,
 including its Git history. That covers the name, job title, employer, work email,
-phone number, LinkedIn URL and portrait. The page sets `noindex` to discourage search engines,
+phone number, LinkedIn and GitHub URLs, and portrait. The page sets `noindex` to discourage search engines,
 but that isn't access control, and anyone with the URL or QR can download the
 vCard. Removing data later from the current version doesn't remove copies that
 were already saved, cached or archived, or that are still in Git history. Only add a private address or similar if you're happy for it to be

@@ -82,6 +82,8 @@ def build_vcard(c: dict, jpeg: bytes) -> str:
         lines.append(f"TEL;TYPE=WORK,CELL,VOICE:{c['phone']}")
     if c.get("url"):
         lines.append(f"URL:{c['url']}")
+    if c.get("github"):
+        lines.append(f"URL:{c['github']}")
     lines.append("PHOTO;ENCODING=b;TYPE=JPEG:" + base64.b64encode(jpeg).decode("ascii"))
     lines.append("END:VCARD")
     return "".join(fold(line) + "\r\n" for line in lines)
