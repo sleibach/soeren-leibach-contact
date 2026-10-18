@@ -41,7 +41,6 @@
   --blue: #006EC7;          /* adesso dk2 */
   --blue-pressed: #005BA6;
   --mint: #28DCAA;          /* adesso accent6 */
-  --mint-tile: #14B88A;     /* mint, deepened so the white glyph reads */
   --purple: #461EBE;        /* adesso accent1 */
   --ink: #1D1D1F;
   --secondary: #6E6E73;
@@ -261,7 +260,6 @@ h1 {
 }
 
 .tile-blue { background: var(--blue); }
-.tile-mint { background: var(--mint-tile); }
 .tile-purple { background: var(--purple); }
 .tile-ink { background: var(--ink); }
 
