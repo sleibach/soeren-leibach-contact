@@ -22,7 +22,7 @@ PORTRAIT_OUT = ROOT / "site" / "assets" / "portrait.jpg"
 VCARD_OUT = ROOT / "site" / "soeren-leibach.vcf"
 
 MAX_EDGE = 512        # target longest edge in pixels (never upscaled)
-JPEG_QUALITY = 90
+JPEG_QUALITY = 92
 FOLD_OCTETS = 75      # RFC 2425 §5.8.1: lines SHOULD NOT exceed 75 octets
 
 

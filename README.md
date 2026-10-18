@@ -19,7 +19,7 @@ contact.json                  single source of truth for contact fields + public
 site/                         everything that is published (and nothing else)
   index.html, styles.css      static page, no JS, no external fonts, no tracking
   soeren-leibach.vcf          vCard 3.0, portrait embedded (PHOTO;ENCODING=b;TYPE=JPEG)
-  assets/portrait.jpg         512×512 JPEG, quality 90, derived from the original PNG
+  assets/portrait.jpg         300×300 JPEG, quality 92 (native size of the source photo)
 qr/
   soeren-leibach-contact-qr.png   1225 px, 25 px/module, navy #002B4D on white, EC level H
   soeren-leibach-contact-qr.svg   vector equivalent
@@ -30,8 +30,11 @@ scripts/
 .github/workflows/pages.yml   deploys site/ to GitHub Pages on push to main
 ```
 
-The original `profilePicture.png` is intentionally **not** committed; only the
-derived JPEG is published.
+The source portrait (your LinkedIn photo, downloaded once to the git-ignored
+`source/` folder) is **not** committed; only the derived JPEG is published. The
+page never loads images from LinkedIn at runtime. The script never upscales: it
+scales down to at most 512 px. LinkedIn only provided a 300×300 file, so for a
+sharper contact photo, rerun it with a higher-resolution original.
 
 ## Setup
 
@@ -47,7 +50,7 @@ brew install zbar            # independent QR decoder used for verification
    `site/index.html`.
 2. Rebuild the portrait and vCard from the **original** image (not a thumbnail):
    ```sh
-   .venv/bin/python scripts/build_vcard.py /path/to/profilePicture.png
+   .venv/bin/python scripts/build_vcard.py source/linkedin-profile.jpg   # or a higher-res original
    .venv/bin/python scripts/verify.py
    ```
 3. Commit and push to `main`. The workflow redeploys automatically. Then run
