@@ -12,14 +12,25 @@ and the portrait can change later without reprinting the QR.
 
 > Personal page. Not an official SAP or adesso service.
 
+## Design
+
+The page follows the adesso theme used in the TechEd deck (`adesso1`):
+- **Colours:** adesso blue `#006EC7` with a mint `#28DCAA` glow, and warm grey `#E7E5E3`.
+- **Type:** Fira Sans Condensed for headlines, Fira Sans for body text.
+- **Logo:** the white adesso logo.
+
+The fonts are self-hosted, so the page makes no external font requests.
+
 ## Layout
 
 ```
 contact.json                  single source of truth for contact fields + public URL
 site/                         everything that is published (and nothing else)
-  index.html, styles.css      static page, no JS, no external fonts, no tracking
+  index.html, styles.css      static page in the adesso deck style, no JS, no third-party requests, no tracking
   soeren-leibach.vcf          vCard 3.0, portrait embedded (PHOTO;ENCODING=b;TYPE=JPEG)
   assets/portrait.jpg         300×300 JPEG, quality 92 (native size of the source photo)
+  assets/adesso-logo.svg      white adesso logo, taken from the RA106 TechEd deck
+  assets/fonts/              Fira Sans + Fira Sans Condensed (latin, woff2, SIL OFL), self-hosted
 qr/
   soeren-leibach-contact-qr.png   1225 px, 25 px/module, navy #002B4D on white, EC level H
   soeren-leibach-contact-qr.svg   vector equivalent
@@ -46,7 +57,7 @@ brew install zbar            # independent QR decoder used for verification
 
 ## Updating details or the portrait
 
-1. Edit `contact.json` (name, title, email, URL), and update the same text in
+1. Edit `contact.json` (name, title, email, phone, URL), and update the same text in
    `site/index.html`.
 2. Rebuild the portrait and vCard from the **original** image (not a thumbnail):
    ```sh
@@ -114,9 +125,8 @@ Also: tap **Email me** (opens a mail draft) and **LinkedIn**.
 
 Everything in `site/` is public on the internet, and the repository is public,
 including its Git history. That covers the name, job title, employer, work email,
-LinkedIn URL and portrait. The page sets `noindex` to discourage search engines,
+phone number, LinkedIn URL and portrait. The page sets `noindex` to discourage search engines,
 but that isn't access control, and anyone with the URL or QR can download the
 vCard. Removing data later from the current version doesn't remove copies that
-were already saved, cached or archived, or that are still in Git history. Don't
-add a phone number or private address unless you're happy for them to be
+were already saved, cached or archived, or that are still in Git history. Only add a private address or similar if you're happy for it to be
 permanently public.

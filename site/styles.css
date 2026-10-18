@@ -1,14 +1,52 @@
+/* Fira Sans / Fira Sans Condensed: SIL Open Font License 1.1 (assets/fonts/OFL.txt) */
+@font-face {
+  font-family: "Fira Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/fira-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/fira-sans-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/fira-sans-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fira Sans Condensed";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/fira-sans-condensed-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fira Sans Condensed";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/fira-sans-condensed-latin-700-normal.woff2") format("woff2");
+}
+
+/* adesso theme colours, taken from the TechEd deck's "adesso1" theme */
 :root {
-  --navy: #002B4D;
-  --navy-900: #001E36;
-  --navy-700: #0B3A61;
+  --blue: #006EC7;          /* dk2 / hlink */
+  --blue-deep: #00509A;
+  --mint: #28DCAA;          /* accent6 */
+  --warm-grey: #E7E5E3;     /* lt2 */
   --white: #FFFFFF;
-  --ink: #0E2235;
-  --muted: #5B6B7A;
-  --line: #E6EBF0;
-  --teal: #00797D;          /* 5.3:1 on white */
-  --teal-on-navy: #7FD8D2;  /* 8.9:1 on navy */
-  --radius: 20px;
+  --ink: #1A1A1A;
+  --muted: #5F5751;         /* darkened accent3 for 6.9:1 on white */
+  --line: #E7E5E3;
+  --heading: "Fira Sans Condensed", "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --body: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color-scheme: light;
 }
 
@@ -20,11 +58,13 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
+  /* The deck's background: adesso blue with a mint glow rising from the bottom */
   background:
-    radial-gradient(120% 60% at 50% 0%, var(--navy-700) 0%, var(--navy) 55%, var(--navy-900) 100%)
-    var(--navy);
+    radial-gradient(70% 45% at 50% 100%, rgb(40 220 170 / 0.85) 0%, rgb(40 220 170 / 0.35) 40%, rgb(40 220 170 / 0) 75%),
+    radial-gradient(120% 70% at 0% 0%, rgb(0 80 154 / 0.55) 0%, rgb(0 80 154 / 0) 60%),
+    var(--blue);
   color: var(--ink);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--body);
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -32,98 +72,100 @@ body {
 
 .page {
   width: 100%;
-  max-width: 27rem;
+  max-width: 28rem;
   margin: 0 auto;
-  padding: max(2.5rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
+  padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem max(1.5rem, env(safe-area-inset-bottom));
+}
+
+/* Top bar --------------------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.25rem;
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: 2.5rem;
 }
 
 /* Hero ------------------------------------------------------------------ */
 
 .hero {
-  text-align: center;
   color: var(--white);
-  padding: 0 0.5rem;
-  margin-bottom: 4.25rem;   /* room for the overlapping portrait */
+  margin-bottom: 1.75rem;
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.9rem;
-  color: var(--teal-on-navy);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.eyebrow::before,
-.eyebrow::after {
-  content: "";
-  width: 1.25rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
+  margin: 0 0 0.75rem;
+  color: var(--white);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
 }
 
 h1 {
   margin: 0 0 0.75rem;
-  font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+  font-family: var(--heading);
+  font-size: clamp(2.25rem, 10.5vw, 3rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
   text-wrap: balance;
 }
 
 .lede {
-  margin: 0 auto;
-  max-width: 22rem;
-  color: rgb(255 255 255 / 0.78);
-  font-size: 1.0625rem;
-  text-wrap: balance;
+  margin: 0;
+  max-width: 24rem;
+  color: rgb(255 255 255 / 0.92);
+  font-size: 1.125rem;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 /* Card ------------------------------------------------------------------ */
 
 .card {
-  position: relative;
-  padding: 4.75rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   background: var(--white);
-  border-radius: var(--radius);
-  box-shadow:
-    0 1px 2px rgb(0 0 0 / 0.12),
-    0 24px 48px -12px rgb(0 0 0 / 0.45);
-  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px -16px rgb(0 30 70 / 0.5);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .portrait {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 7.5rem;
-  height: 7.5rem;
-  transform: translate(-50%, -50%);
+  flex: none;
+  width: 5.5rem;
+  height: 5.5rem;
   border-radius: 50%;
   object-fit: cover;
-  background: var(--line);
-  border: 4px solid var(--white);
-  box-shadow: 0 8px 24px rgb(0 20 40 / 0.35);
+  background: var(--warm-grey);
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--mint);
 }
 
 .name {
   margin: 0;
-  color: var(--navy);
-  font-size: 1.5rem;
+  color: var(--blue);
+  font-family: var(--heading);
+  font-size: 1.625rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
+  line-height: 1.1;
 }
 
 .role {
-  margin: 0.25rem 0 0;
+  margin: 0.3rem 0 0;
   color: var(--ink);
   font-weight: 500;
+  line-height: 1.3;
 }
 
 .org {
@@ -134,48 +176,50 @@ h1 {
 
 /* Actions --------------------------------------------------------------- */
 
-.actions {
-  display: grid;
-  gap: 0.75rem;
-  margin: 1.5rem 0 0;
-}
-
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  min-height: 3.25rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-family: var(--body);
   font-size: 1.0625rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .btn svg { flex: none; }
 
 .btn-primary {
-  background: var(--navy);
+  min-height: 3.5rem;
+  background: var(--blue);
   color: var(--white);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.08) inset, 0 6px 16px -6px rgb(0 43 77 / 0.6);
+  font-size: 1.125rem;
 }
 
-.btn-primary svg { color: var(--teal-on-navy); }
-.btn-primary:hover { background: var(--navy-900); }
+.btn-primary:hover { background: var(--blue-deep); }
+
+.quick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
 
 .btn-secondary {
   background: var(--white);
-  color: var(--navy);
-  border: 1.5px solid #C9D3DC;
+  color: var(--blue);
+  border: 1.5px solid #B9D3EC;
 }
 
-.btn-secondary:hover { border-color: var(--navy); }
+.btn-secondary:hover { border-color: var(--blue); }
 
 .btn:focus-visible,
 .details a:focus-visible {
-  outline: 3px solid var(--teal);
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -183,15 +227,13 @@ h1 {
 
 .details {
   margin: 1.5rem 0 0;
-  padding-top: 0.5rem;
   border-top: 1px solid var(--line);
-  text-align: left;
 }
 
 .details > div {
   display: grid;
-  gap: 0.15rem;
-  padding: 0.8rem 0;
+  gap: 0.1rem;
+  padding: 0.75rem 0;
 }
 
 .details > div + div { border-top: 1px solid var(--line); }
@@ -207,15 +249,13 @@ h1 {
 .details dd {
   margin: 0;
   min-width: 0;
-  font-size: 1rem;
   overflow-wrap: break-word;
 }
 
 .details a {
-  color: var(--teal);
+  color: var(--blue);
   font-weight: 500;
   text-decoration: none;
-  border-radius: 2px;
 }
 
 .details a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
@@ -224,7 +264,7 @@ h1 {
 
 .footer {
   margin-top: 1.5rem;
-  color: rgb(255 255 255 / 0.55);
+  color: rgb(255 255 255 / 0.85);
   font-size: 0.75rem;
   text-align: center;
 }
@@ -232,13 +272,16 @@ h1 {
 .footer p { margin: 0; }
 
 @media (max-width: 22rem) {
-  .eyebrow { letter-spacing: 0.1em; }
-  .eyebrow::before, .eyebrow::after { display: none; }
-  .details dd { font-size: 0.875rem; }
+  .page { padding-left: 1rem; padding-right: 1rem; }
+  .card { padding: 1.25rem; }
+  .portrait { width: 4.25rem; height: 4.25rem; }
+  .name { font-size: 1.375rem; }
+  .details dd { font-size: 0.9375rem; }
 }
 
 @media (min-width: 40rem) {
-  .page { padding-top: 4.5rem; }
+  .page { padding-top: 2.5rem; }
+  .topbar { margin-bottom: 3.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -78,6 +78,8 @@ def build_vcard(c: dict, jpeg: bytes) -> str:
         f"TITLE:{escape(c['title'])}",
         f"EMAIL;TYPE=INTERNET,WORK,PREF:{c['email']}",
     ]
+    if c.get("phone"):
+        lines.append(f"TEL;TYPE=WORK,CELL,VOICE:{c['phone']}")
     if c.get("url"):
         lines.append(f"URL:{c['url']}")
     lines.append("PHOTO;ENCODING=b;TYPE=JPEG:" + base64.b64encode(jpeg).decode("ascii"))

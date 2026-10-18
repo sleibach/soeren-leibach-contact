@@ -77,6 +77,8 @@ def main() -> None:
         html = body.decode("utf-8")
         check(f'href="{VCF_NAME}"' in html, "live page links to the .vcf")
         check(f'href="mailto:{contact["email"]}"' in html, "live page has mailto fallback")
+        if contact.get("phone"):
+            check(f'href="tel:{contact["phone"]}"' in html, "live page has tel: link")
         for path, expect in (("assets/portrait.jpg", "image/jpeg"), (VCF_NAME, "vcard")):
             status, ctype, body = fetch(urljoin(base, path))
             check(status == 200 and expect in ctype, f"live {path} -> {status} {ctype}")
